@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 [RequireComponent(typeof(BallMovement))]
 public class BallController : OneColliderTrigger
 {
     private BallMovement movement;
+
+    [HideInInspector] public UnityEvent<SegmentType> CollisionSegment;
     void Start()
     {
         movement = GetComponent<BallMovement>();
@@ -31,7 +35,9 @@ public class BallController : OneColliderTrigger
             if (segment.Type == SegmentType.Trap || segment.Type == SegmentType.Finish)
             {
                 movement.Stop();
-            }            
+            }
+
+            CollisionSegment.Invoke(segment.Type);
         }
     }
 }

@@ -19,14 +19,8 @@ public class LevelGenerator : MonoBehaviour
 
     private float floorAmount = 0;
 
-    public Transform BALLTRANSFORM;
-
-    private void Start()
-    {
-        Generate(1);
-        BALLTRANSFORM.position = new Vector3(BALLTRANSFORM.position.x, floorAmount * floorHeight - floorHeight, BALLTRANSFORM.position.z);
-        
-    }
+    private float lastFloorY;
+    public float LastFloorY => lastFloorY;
 
     public void Generate(int level)
     {
@@ -55,6 +49,7 @@ public class LevelGenerator : MonoBehaviour
             if(i == floorAmount -1) // highest floor
             {
                 floor.AddEmptySegment(amountEmptySegment);
+                lastFloorY = floor.transform.position.y; // y-coordinate for the last floor
             }
 
             
