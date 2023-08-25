@@ -17,7 +17,8 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private int defaultFloorAmount;
     [SerializeField] private float floorHeight;
 
-    private float floorAmount = 0;
+    private float floorAmount;
+    public float FloorAmount => floorAmount;
 
     private float lastFloorY;
     public float LastFloorY => lastFloorY;
