@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BallController))]
+[RequireComponent(typeof(Animator))]
 public class BallMovement : MonoBehaviour
 {
     [Header("Fall")]

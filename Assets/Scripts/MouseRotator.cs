@@ -10,11 +10,12 @@ public class MouseRotator : MonoBehaviour
     
     private void Update()
     {
-       // Debug.Log(Input.GetAxis("Horizontal"));
+        //Debug.Log(Input.GetAxis("Horizontal"));
 
         if(Input.GetMouseButton(0) == true)
         {
             transform.Rotate(0, Input.GetAxis(mouseInputAxis) * -sensitive, 0); // инвертированное вращение
+            //Debug.Log("Rotation");
         }        
     }
 }

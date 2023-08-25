@@ -17,7 +17,8 @@ public class BallController : OneColliderTrigger
 
         if(segment != null)
         {
-            if(segment.Type == SegmentType.Empty)
+            //Debug.Log("OnOneTriggerEnter: segment != null");
+            if (segment.Type == SegmentType.Empty)
             {
                 movement.Fall(other.transform.position.y);
             }

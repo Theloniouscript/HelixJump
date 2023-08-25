@@ -12,7 +12,7 @@ public abstract class OneColliderTrigger : MonoBehaviour
     {
         if (lastCollider != null && lastCollider != other) return;
         lastCollider = other;
-        OnOneTriggerEnter(other);
+        OnOneTriggerEnter(other);        
     }
 
     private void OnTriggerExit(Collider other)
