@@ -3,14 +3,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelProgress : BallEvents
-{   
+{
+    [SerializeField] private ScoresCollector scoresCollector;
     private int currentLevel = 1;
-    public int CurrentLevel => currentLevel;
+    public int CurrentLevel => currentLevel;   
+
+    private int recScore;
+    public int RecScore => recScore;
 
     protected override void Awake()
-    {
+    {       
         base.Awake();
-        Load();
+        Load(); 
+        
+
     }
 #if UNITY_EDITOR
     private void Update()
@@ -27,22 +33,33 @@ public class LevelProgress : BallEvents
     }
 #endif
     protected override void OnBallCollisionSegment(SegmentType type)
-    {
+    {   
         if (type == SegmentType.Finish)
         {
             currentLevel++;
-            Save();
+
+            if (recScore < scoresCollector.Scores)
+            {
+                recScore = scoresCollector.Scores;
+            }
+
+            Save();                    
+                
         }
     }   
     
     private void Save()
     {
         PlayerPrefs.SetInt("LevelProgress: currentLevel", currentLevel);
+        PlayerPrefs.SetInt("LevelProgress: recScore", recScore);
+        Debug.Log("RecScore on Save: " + recScore);
     }
 
     private void Load()
     {
         currentLevel = PlayerPrefs.GetInt("LevelProgress: currentLevel", 1);
+        recScore = PlayerPrefs.GetInt("LevelProgress: recScore", recScore);
+
     }
 
 #if UNITY_EDITOR
